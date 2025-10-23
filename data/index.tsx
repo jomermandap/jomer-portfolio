@@ -1,4 +1,4 @@
-import { Mail, User } from "lucide-react"; //Zap
+import { Mail, User, FolderOpen } from "lucide-react"; //Zap
 import {
   asanaIcon,
   athonLogo,
@@ -19,9 +19,6 @@ import {
   notionIcon,
   pinterest,
   pixelworksLogo,
-  project_1,
-  project_2,
-  project_3,
   // project_4,
   seoOptIcon,
   slackIcon,
@@ -42,7 +39,7 @@ import {
   myExperienceTypes,
   myServicesPlansTypes,
   myServicesTypes,
-  myShowCasesTypes,
+  Project,
   myStackTypes,
   socialBrandsTypes,
   testimonialsTypes,
@@ -56,6 +53,12 @@ export const pagesLists: pagesListsType[] = [
     title: "Home",
     href: "/",
     icon: <User />,
+  },
+  {
+    id: 2,
+    title: "Projects",
+    href: "/projects",
+    icon: <FolderOpen />,
   },
   {
     id: 3,
@@ -252,39 +255,72 @@ export const myServices: myServicesTypes[] = [
   },
 ];
 
-export const myShowCases: myShowCasesTypes[] = [
+export const myProjects: Project[] = [
   {
     id: 1,
-    title: "Agile Software Development",
-    description:
-      "Mastering clean coding practices for efficient and readable software development.",
-    link: "linkedin.com",
-    type: "Software Development",
-    theme: "LinkedIn",
-    pages: 1.5,
-    image: project_1,
+    title: "Lantawi: Hyper-Local Weather on Edge",
+    summary: "Offline forecasts on Raspberry Pi 4 using TFLite.",
+    impact: "↓12% 24-hr temp RMSE on test region.",
+    stack: ["Next.js", "TFLite", "Raspberry Pi", "Python"],
+    links: { 
+      code: "https://github.com/jomermandap/lantawi", 
+      paper: "https://arxiv.org/abs/example" 
+    },
   },
   {
     id: 2,
-    title: "GPT-4 Foundations",
-    description:
-      "Building AI-powered applications with GPT-4 and generative AI technologies.",
-    link: "linkedin.com",
-    type: "Artificial Intelligence",
-    theme: "LinkedIn",
-    pages: 1.2,
-    image: project_2,
+    title: "Portfolio Website",
+    summary: "Modern portfolio built with Next.js 15 and Tailwind CSS.",
+    impact: "95.7% Lighthouse performance score.",
+    stack: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
+    links: { 
+      code: "https://github.com/jomermandap/portfolio", 
+      demo: "https://jomermandap.dev" 
+    },
   },
   {
     id: 3,
-    title: "UX Foundations: Interaction Design",
-    description:
-      "Understanding the principles of interaction design for a seamless user experience.",
-    link: "linkedin.com",
-    type: "User Experience",
-    theme: "LinkedIn",
-    pages: 3.25,
-    image: project_3,
+    title: "E-Commerce Dashboard",
+    summary: "Analytics dashboard for small business inventory management.",
+    impact: "↑23% inventory turnover rate for client.",
+    stack: ["React", "Node.js", "PostgreSQL", "Chart.js"],
+    links: { 
+      code: "https://github.com/jomermandap/dashboard", 
+      demo: "https://dashboard-demo.vercel.app" 
+    },
+  },
+  {
+    id: 4,
+    title: "AI Chat Assistant",
+    summary: "Custom GPT integration with document processing capabilities.",
+    impact: "↓40% customer support response time.",
+    stack: ["Python", "OpenAI API", "FastAPI", "Docker"],
+    links: { 
+      code: "https://github.com/jomermandap/ai-chat", 
+      demo: "https://ai-chat-demo.vercel.app" 
+    },
+  },
+  {
+    id: 5,
+    title: "Mobile Weather App",
+    summary: "Cross-platform weather app with location-based forecasts.",
+    impact: "4.8★ rating with 500+ downloads.",
+    stack: ["React Native", "Expo", "OpenWeather API", "AsyncStorage"],
+    links: { 
+      code: "https://github.com/jomermandap/weather-app", 
+      demo: "https://weather-app-demo.netlify.app" 
+    },
+  },
+  {
+    id: 6,
+    title: "Task Management System",
+    summary: "Collaborative project management tool with real-time updates.",
+    impact: "↑35% team productivity metrics.",
+    stack: ["Vue.js", "Socket.io", "MongoDB", "Express"],
+    links: { 
+      code: "https://github.com/jomermandap/task-manager", 
+      demo: "https://task-manager-demo.herokuapp.com" 
+    },
   },
 ];
 

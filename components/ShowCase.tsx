@@ -1,14 +1,13 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import SectionHeading from "./SectionHeading";
-import { flyIcon, linkIcon } from "@/app/assets/assets"; //rightArrow
-import Image from "next/image";
-import { myShowCases } from "@/data";
+import { flyIcon } from "@/app/assets/assets";
+import { myProjects } from "@/data";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { StaticImageData } from "next/image";
+import { ExternalLink, Github } from "lucide-react";
 
-//Certifications
+//Projects
 
 export default function ShowCase({
   isMore = true,
@@ -17,22 +16,19 @@ export default function ShowCase({
   isMore: boolean;
   showData: number;
 }) {
-  const [selectedImage, setSelectedImage] = useState<
-    string | StaticImageData | null
-  >(null);
-
   return (
-    <section className="flex items-start flex-none flex-col flex-nowrap gap-[30px] h-min justify-start overflow-visible relative w-full ">
-      <div className="flex-none h-auto relative w-full">
-        <SectionHeading
-          title="Certifications"
-          icon={flyIcon}
-          description="Explore a collection of my recent achievements with online learning platforms."
-        />
-      </div>
-
-      <div className="flex items-start flex-none flex-wrap gap-[10px] h-min justify-start overflow-visible p-0 relative w-full">
-        {myShowCases?.slice(0, showData).map((item, index) => (
+    <section className="flex items-start flex-none flex-col flex-nowrap gap-6 h-min justify-start overflow-visible relative w-full">
+      {isMore && (
+        <div className="flex-none h-auto relative w-full">
+          <SectionHeading
+            title="Projects"
+            icon={flyIcon}
+            description="Explore a collection of my recent projects and achievements."
+          />
+        </div>
+      )}
+      <div className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6 w-full">
+        {myProjects?.slice(0, showData).map((project, index) => (
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -40,138 +36,94 @@ export default function ShowCase({
             viewport={{
               once: true,
             }}
-            className="flex-none h-auto relative w-full "
-            key={item.id}
+            className="bg-very-dark-gray border border-dark-gray-3 rounded-xl p-4 sm:p-5 hover:border-dark-gray-2 transition-all duration-300"
+            key={project.id}
           >
-            <div className="bg-very-dark-gray w-full border border-dark-gray-3 rounded-xl flex items-center flex-nowrap flex-col lg:flex-row  gap-5 h-min justify-start overflow-visible p-4 lg:p-[8px_24px_8px_8px] relative ">
-              <div className="lg:flex-1 w-full rounded-xl h-[180px] relative ">
-                <figure className="lg:absolute relative h-full w-full inset-0 rounded-xl overflow-hidden">
-                  <Image
-                    src={item.image}
-                    className="w-full block h-full rounded-[inherit] object-cover object-center transition-transform duration-500 transform hover:scale-110 cursor-pointer"
-                    height={1280}
-                    width={989}
-                    alt={item.title}
-                    onClick={() => setSelectedImage(item.image)}
-                  />
-                </figure>
+            {/* Project Header */}
+            <div className="flex items-start justify-between mb-3">
+              <div className="flex-1">
+                <h3 className="font-bold text-white text-base sm:text-lg leading-tight mb-2">
+                  {project.title}
+                </h3>
+                <p className="text-light-gray-2 text-xs sm:text-sm leading-relaxed">
+                  {project.summary}
+                </p>
               </div>
+            </div>
 
-              <div className="flex items-start flex-1 flex-col flex-nowrap gap-5 h-min justify-start overflow-visible p-0 relative w-full ">
-                <div className="flex items-start flex-1 flex-col flex-nowrap gap-4 h-min justify-start overflow-visible p-0 relative w-full">
-                  <div className="flex items-center flex-none flex-nowrap gap-5 h-min justify-between overflow-visible p-0 relative w-full">
-                    <div className="flex-1 h-auto relative whitespace-pre-wrap break-words justify-start flex-shrink-0 flex-col ">
-                      <h3 className="font-bold text-white text-[22px] leading-[1.2em] ">
-                        {item.title}
-                      </h3>
-                    </div>
-
-                    <div className="flex-none h-auto relative">
-                      <Link
-                        href={"https://" + item.link}
-                        target="_blank"
-                        className="bg-almost-black border border-dark-gray-4 flex cursor-pointer items-center flex-nowrap gap-[6px] h-min justify-center overflow-visible  relative w-min rounded-lg custom-padding group hover:bg-dark-gray-4 transition-all duration-500"
-                      >
-                        <div className="opacity-70 aspect-square h-auto overflow-visible w-5 relative flex-none group-hover:opacity-100 duration-500 transition-all">
-                          <figure className="absolute inset-0 w-full h-full rounded-[inherit] ">
-                            <Image
-                              src={linkIcon}
-                              alt="Link icon"
-                              className="block w-full h-full object-cover object-center rounded-[inherit] "
-                              height={20}
-                              width={20}
-                            />
-                          </figure>
-                        </div>
-
-                        <div className="flex-none h-auto relative whitespace-pre w-auto flex flex-col flex-shrink-0 opacity-70  group-hover:opacity-100 transition-all duration-500 ">
-                          <p className="text-light-gray-3 font-medium  leading-[100%] text-[15px] ">
-                            {item.link}
-                          </p>
-                        </div>
-                      </Link>
-                    </div>
-                  </div>
-
-                  <div className="border-y border-dark-gray-3 flex flex-none gap-3 h-min justify-start overflow-visible px-0 py-3 relative w-full flex-nowrap items-center">
-                    <div className="flex flex-col flex-shrink-0 flex-none h-auto whitespace-pre w-auto relative ">
-                      <p className="text-light-gray-2 text-[15px] font-medium ">
-                        {item.type}
-                      </p>
-                    </div>
-                    <div className="bg-medium-gray rounded-full h-[5px] aspect-square flex-none relative w-[5px] "></div>
-                    <div className="flex flex-col flex-shrink-0 flex-none h-auto whitespace-pre w-auto relative ">
-                      <p className="text-light-gray-2 text-[15px] font-medium ">
-                        {item.pages} Hour(s)
-                      </p>
-                    </div>
-                    <div className="bg-medium-gray rounded-full h-[5px] aspect-square flex-none relative w-[5px] "></div>
-                    <div className="flex flex-col flex-shrink-0 flex-none h-auto whitespace-pre w-auto relative ">
-                      <p className="text-light-gray-2 text-[15px] font-medium ">
-                        {item.theme}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="flex flex-col justify-start flex-none h-auto relative whitespace-pre-wrap w-full break-words ">
-                  <p className="text-[15px] font-medium text-light-gray-2 ">
-                    {item.description}
-                  </p>
-                </div>
+            {/* Impact Line */}
+            {project.impact && (
+              <div className="mb-3 p-2 bg-dark-gray-1 rounded-lg border border-dark-gray-4">
+                <p className="text-green-400 text-xs font-medium">
+                  {project.impact}
+                </p>
               </div>
+            )}
+
+            {/* Stack Tags */}
+            <div className="flex flex-wrap gap-1.5 mb-3">
+              {project.stack.map((tech, techIndex) => (
+                <span
+                  key={techIndex}
+                  className="px-3 py-1 bg-almost-black border border-dark-gray-4 rounded-full text-light-gray-3 text-xs font-medium"
+                >
+                  {tech}
+                </span>
+              ))}
+            </div>
+
+            {/* Action Buttons */}
+            <div className="flex flex-col sm:flex-row gap-2 flex-wrap">
+              {project.links.code && (
+                <Link
+                  href={project.links.code}
+                  target="_blank"
+                  className="flex items-center gap-1.5 px-3 py-1.5 bg-almost-black border border-dark-gray-4 rounded-lg hover:bg-dark-gray-4 transition-all duration-300 text-light-gray-3 text-xs font-medium"
+                >
+                  <Github size={14} />
+                  Code
+                </Link>
+              )}
+              {project.links.demo && (
+                <Link
+                  href={project.links.demo}
+                  target="_blank"
+                  className="flex items-center gap-1.5 px-3 py-1.5 bg-almost-black border border-dark-gray-4 rounded-lg hover:bg-dark-gray-4 transition-all duration-300 text-light-gray-3 text-xs font-medium"
+                >
+                  <ExternalLink size={14} />
+                  Demo
+                </Link>
+              )}
+              {project.links.paper && (
+                <Link
+                  href={project.links.paper}
+                  target="_blank"
+                  className="flex items-center gap-1.5 px-3 py-1.5 bg-almost-black border border-dark-gray-4 rounded-lg hover:bg-dark-gray-4 transition-all duration-300 text-light-gray-3 text-xs font-medium"
+                >
+                  <ExternalLink size={14} />
+                  Paper
+                </Link>
+              )}
             </div>
           </motion.div>
         ))}
       </div>
+
       {isMore && (
         <div className="flex-1 h-auto relative w-full block ">
-          {/* <Link
-            href={`/services`}
+          <Link
+            href="/projects"
             className="bg-almost-black rounded-[10px] border border-dark-gray-4 w-full flex cursor-pointer gap-[6px] p-[14px_18px] flex-nowrap justify-center items-center overflow-visible h-min relative group hover:bg-dark-gray-4 transition-all duration-500"
           >
-            <div className="flex flex-shrink-0 group-hover:opacity-100  transition-all duration-500 justify-start opacity-70 flex-none h-auto w-auto whitespace-pre relative ">
-              <p className="uppercase font-medium font-IBM_Plex_Mono text-[15px] text-very-light-gray ">
-                View All projects
+            <div className="flex flex-shrink-0 group-hover:opacity-100 transition-all duration-500 justify-start opacity-70 flex-none h-auto w-auto whitespace-pre relative">
+              <p className="uppercase font-medium font-IBM_Plex_Mono text-[15px] text-very-light-gray">
+                View All Projects
               </p>
             </div>
-            <div className="aspect-square flex-none h-auto relative overflow-hidden w-5 transition-all group-hover:opacity-100 duration-500  opacity-70">
-              <figure className="absolute inset-0 rounded-[inherit] ">
-                <Image
-                  src={rightArrow}
-                  alt="Right arrow icon"
-                  className="block w-full h-full object-cover object-center rounded-[inherit]  -rotate-45"
-                  height={10}
-                  width={10}
-                />
-              </figure>
+            <div className="aspect-square flex-none h-auto relative overflow-hidden w-5 transition-all group-hover:opacity-100 duration-500 opacity-70">
+              <ExternalLink size={16} className="w-full h-full" />
             </div>
-          </Link> */}
-        </div>
-      )}
-
-      {/* Modal for full image view */}
-      {selectedImage && (
-        <div
-          className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4"
-          onClick={() => setSelectedImage(null)}
-        >
-          <div className="relative max-w-4xl w-full">
-            <button
-              className="absolute -top-10 right-0 text-white hover:text-gray-300 text-xl p-2"
-              onClick={() => setSelectedImage(null)}
-            >
-              ✕ Close
-            </button>
-            <Image
-              src={selectedImage}
-              alt="Full size image"
-              width={1280}
-              height={989}
-              className="w-full h-auto rounded-lg"
-              onClick={(e) => e.stopPropagation()}
-            />
-          </div>
+          </Link>
         </div>
       )}
     </section>

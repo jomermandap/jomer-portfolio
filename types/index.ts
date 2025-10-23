@@ -53,15 +53,18 @@ export interface myServicesTypes {
   icon: string;
   link: string;
 }
-export interface myShowCasesTypes {
+export interface Project {
   id: number;
   title: string;
-  description: string;
-  link: string;
-  type: string;
-  theme: string;
-  pages: number;
-  image: StaticImageData | string;
+  summary: string;
+  impact?: string;
+  stack: string[];
+  image?: StaticImageData | string;
+  links: {
+    code?: string;
+    demo?: string;
+    paper?: string;
+  };
 }
 
 export interface testimonialsTypes {

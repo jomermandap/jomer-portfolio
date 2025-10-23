@@ -2,13 +2,13 @@
 import { AvatarMe, calendarIcon, handGif } from "@/app/assets/assets";
 import Image from "next/image";
 import React from "react";
-import { Mail } from "lucide-react";
+import { Mail, FileText } from "lucide-react";
 import Button from "../ui/Button";
 
 import { motion } from "framer-motion";
 import AnimatedImageGrid from "../ui/AnimatedImageGrid";
 import Brandcontainer from "../Brandcontainer/Brandcontainer";
-import CounterContainer from "../CounterContainer/CounterContainer";
+// TODO: Temporarily hidden - import CounterContainer from "../CounterContainer/CounterContainer";
 import ScheduleButton from "../ui/ScheduleButton";
 
 export default function Hero() {
@@ -27,7 +27,7 @@ export default function Hero() {
       {/* top  */}
       <section className="flex flex-col lg:flex-row items-center flex-none flex-nowrap gap-[20px] h-min justify-start overflow-visible p-0 relative w-full ">
         <div className="flex items-start w-full md:items-center flex-none flex-nowrap flex-col gap-[10px] h-min justify-center p-0 relative md:w-min overflow-hidden rounded-lg">
-          <div className="aspect-auto flex-none h-auto w-[260px] relative bg-image-bg rounded-lg">
+          <div className="aspect-auto flex-none h-auto w-[200px] sm:w-[260px] relative bg-image-bg rounded-lg">
             <figure className="h-full w-full rounded-lg">
               <Image
                 src={AvatarMe}
@@ -83,10 +83,27 @@ export default function Hero() {
                 delay: 0.2,
               }}
               viewport={{ once: true }}
-              className="text-4xl leading-[1.2em] font-bold text-white"
+              className="text-3xl sm:text-4xl leading-[1.2em] font-bold text-white"
             >
-              Jomer R. Mandap
+              Jomer Mandap
             </motion.h1>
+            <motion.h2
+              initial={{ opacity: 0, y: 30 }}
+              animate={{
+                opacity: 1,
+                y: 0,
+              }}
+              transition={{
+                duration: 0.5,
+                type: "spring",
+                stiffness: 100,
+                delay: 0.25,
+              }}
+              viewport={{ once: true }}
+              className="text-lg sm:text-xl text-light-gray-3 font-medium"
+            >
+              Frontend-leaning Full-Stack Student • AI/IoT Projects
+            </motion.h2>
           </div>
 
           <motion.p
@@ -102,11 +119,9 @@ export default function Hero() {
               delay: 0.3,
             }}
             viewport={{ once: true }}
-            className="text-[18px] text-light-gray-2 font-medium leading-[150%] mb-4"
+            className="text-base sm:text-[18px] text-light-gray-2 font-medium leading-[150%] mb-4"
           >
-            An aspiring Computer Science student from Davao City, Philippines,
-            with a passion for UI/UX and Web Development and exploring different
-            businesses!
+            Polished UIs. Practical ML/IoT. Clean shipping.
           </motion.p>
 
           <motion.div
@@ -122,7 +137,7 @@ export default function Hero() {
               delay: 0.4,
             }}
             viewport={{ once: true }}
-            className="flex  items-start flex-none flex-nowrap  w-full gap-5 h-min justify-start p-0 relative"
+            className="flex flex-col sm:flex-row items-start flex-none flex-nowrap w-full gap-3 sm:gap-4 h-min justify-start p-0 relative"
           >
             <Button
               onClick={handleClick}
@@ -130,8 +145,12 @@ export default function Hero() {
               icon={<Mail size={18} />}
               title="Email Me"
             />
-            {/* <Button position='left' icon={<Calendar1 size={18} />} 
-                        title='Schedule Call' /> */}
+            <Button
+              onClick={() => window.open('/resume.pdf', '_blank')}
+              position="left"
+              icon={<FileText size={18} />}
+              title="Resume"
+            />
             <ScheduleButton icon={calendarIcon} label="Schedule call" />
           </motion.div>
         </div>
@@ -153,7 +172,7 @@ export default function Hero() {
       >
         <Brandcontainer />
         {/* bottom  */}
-        <CounterContainer />
+        {/* TODO: Temporarily hidden fake counters - <CounterContainer /> */}
       </motion.div>
     </div>
   );

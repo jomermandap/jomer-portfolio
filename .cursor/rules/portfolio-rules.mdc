@@ -1,0 +1,199 @@
+---
+alwaysApply: true
+---
+
+# =========================================================
+# Cursor Rules — Jomer Mandap Portfolio
+# Author: Jomer R. Mandap
+# Purpose: Guide Cursor to follow consistent fullstack + UI/UX best practices
+# =========================================================
+
+meta:
+  project_type: "Next.js 15 + Tailwind + TypeScript"
+  persona: "Frontend-leaning Full-Stack Developer / UI-UX perfectionist"
+  tone: "Clean, modern, accessible, student-internship-ready"
+  goals:
+    - Maintain professional portfolio standards for internship applications
+    - Keep code clean, modular, and type-safe
+    - Follow modern design psychology and usability heuristics
+    - Focus on clarity, hierarchy, and minimalism in UI
+
+# ---------------------------------------------------------
+# 🧠 GENERAL BEHAVIOR
+# ---------------------------------------------------------
+behavior:
+  - Always provide context summary before editing a file
+  - Always preserve existing type safety, imports, and formatting
+  - Use minimal diffs and comment with TODO when unsure
+  - Avoid generating boilerplate that duplicates existing components
+  - Ask for clarification if design intent is ambiguous
+  - Use functional React with hooks; no class components
+
+# ---------------------------------------------------------
+# ⚙️ CODE STYLE
+# ---------------------------------------------------------
+code:
+  language: "TypeScript"
+  framework: "Next.js (App Router)"
+  styling: "Tailwind CSS"
+  motion: "Framer Motion"
+  formatting:
+    - Use Prettier defaults
+    - 2-space indentation
+    - 100-char max line length
+  naming_conventions:
+    components: PascalCase
+    functions: camelCase
+    variables: camelCase
+    constants: SCREAMING_SNAKE_CASE
+  architecture:
+    - app/ — routes and layout
+    - components/ — reusable UI
+    - components/ui — atomic elements (Button, Card, etc.)
+    - data/ — typed constants (projects, socials)
+    - types/ — all shared interfaces and types
+    - lib/ — utilities and helpers
+  imports:
+    - Use absolute imports "@/..."
+    - Order imports logically: React → third-party → local
+  components:
+    - Each component <150 lines
+    - Props must be typed
+    - Pure functions, no side effects
+    - Keep UI and logic separated (use hooks for logic)
+  hooks:
+    - Custom hooks prefixed with use
+    - Located in /hooks
+  api:
+    - Follow REST semantics under app/api/
+    - Return JSON only, no HTML in API routes
+
+# ---------------------------------------------------------
+# 🎨 UI / UX DESIGN
+# ---------------------------------------------------------
+uiux:
+  layout:
+    - Use Tailwind’s spacing scale (8px rhythm)
+    - max-width: "max-w-7xl mx-auto px-6 md:px-12"
+    - Responsive: mobile-first, 2-column grid ≥ md
+  hierarchy:
+    - One clear H1 per page
+    - Each section starts with semantic H2
+    - Visual hierarchy from typography + spacing, not color
+  color_palette:
+    - 1 primary, 1 accent, 1 neutral scale
+    - High contrast (≥4.5:1)
+    - Consistent light/dark tokens
+  typography:
+    - Display font: Space Grotesk
+    - Body font: Inter or Geist Sans
+    - Line length ≤ 90 chars
+  motion:
+    - Subtle entrance animations (150–400ms)
+    - Respect prefers-reduced-motion
+    - Use Framer Motion variants when possible
+  accessibility:
+    - Semantic tags (nav, main, section, footer)
+    - aria-labels and alt text for icons/images
+    - Visible focus outlines
+    - Keyboard navigability tested
+  forms:
+    - Labels always visible
+    - Error states with color + text feedback
+    - Submit buttons disabled while loading
+
+# ---------------------------------------------------------
+# 💼 PORTFOLIO CONTENT RULES
+# ---------------------------------------------------------
+content:
+  hero:
+    - Introduce name, role, and short value proposition
+    - Two CTAs: Email Me, Resume
+    - Include social icons (GitHub, LinkedIn)
+  projects:
+    - Between 4–6 items
+    - Each shows title, summary, impact, stack, links (Code/Demo)
+    - Emphasize outcomes (e.g., RMSE ↓12%, 95.7% F1)
+    - Keep copy concise and measurable
+  stack:
+    - Group tools by category: Frontend, Backend, AI/IoT, Tools
+    - Max 12–15 icons
+  experience:
+    - Real experiences only (research, freelance, orgs)
+    - Keep one-line descriptions with measurable results
+  contact:
+    - Working Resend API form
+    - Add fallback mailto link
+    - Optional Cal.com button
+  resume:
+    - Always downloadable at /resume.pdf
+  metadata:
+    - Add SEO tags, OG image, sitemap
+    - Title: “Jomer Mandap — Developer Portfolio”
+
+# ---------------------------------------------------------
+# 🧩 TAILWIND CONVENTIONS
+# ---------------------------------------------------------
+tailwind:
+  order:
+    - layout (flex, grid, gap, justify)
+    - box (p-, m-, w-, h-)
+    - typography (text-, font-, leading-)
+    - color (bg-, text-, border-)
+    - state (hover:, focus:, dark:)
+  utilities:
+    - Extract repetitive combos into @apply in globals.css
+  radius: "rounded-2xl"
+  shadow: "shadow-md or shadow-lg only"
+  transitions: "transition-all duration-200 ease-in-out"
+
+# ---------------------------------------------------------
+# 🧱 DEVELOPMENT WORKFLOW
+# ---------------------------------------------------------
+workflow:
+  commits:
+    - "feat: new feature"
+    - "fix: bug fix"
+    - "chore: cleanup"
+    - "docs: readme or comment updates"
+  branches:
+    - "feat/<feature>"
+    - "fix/<bug>"
+  precommit:
+    - Run pnpm lint && pnpm format
+    - Ensure dev build passes
+  qa:
+    - Lighthouse ≥90 (Perf, A11y, SEO)
+    - Test on mobile, tablet, desktop
+    - Keyboard navigation check
+  deployment:
+    - Vercel environment vars: RESEND_API_KEY, TO_EMAIL
+    - Verify email form before final deploy
+    - Keep analytics minimal (Vercel Analytics or Plausible)
+
+# ---------------------------------------------------------
+# 🧠 CURSOR CHAT GUIDELINES
+# ---------------------------------------------------------
+cursor_chat:
+  prompts:
+    structure: |
+      Context:
+        (Summarize current file or intent)
+      Goal:
+        (Explain exactly what needs to be added or changed)
+      Rules:
+        (Constraints: typesafe, accessible, minimal diff)
+      Output:
+        (Specify output format, e.g., "Return final component code only.")
+  dos:
+    - Give Cursor intent + file scope + expected result
+    - Keep edits atomic (1 feature per request)
+    - Request explanations only when needed
+  donts:
+    - Don’t overwrite entire files unnecessarily
+    - Don’t generate lorem ipsum
+    - Don’t remove accessibility attributes
+
+# ---------------------------------------------------------
+# ✅ END OF RULESET
+# ---------------------------------------------------------
